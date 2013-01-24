@@ -4,13 +4,22 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://masquaremo.github.com/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-01-24T22:21:28+09:00</updated>
+  <updated>2013-01-24T22:43:37+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[masquaremo]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[sample post]]></title>
+    <link href="http://masquaremo.github.com/blog/2013/01/24/first-post/"/>
+    <updated>2013-01-24T22:22:00+09:00</updated>
+    <id>http://masquaremo.github.com/blog/2013/01/24/first-post</id>
+    <content type="html"><![CDATA[<p>test</p>
+]]></content>
+  </entry>
   
 </feed>
