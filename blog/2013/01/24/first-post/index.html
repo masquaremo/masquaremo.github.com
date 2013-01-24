@@ -9,8 +9,7 @@
   <meta name="author" content="masquaremo">
 
   
-  <meta name="description" content="テスト
-">
+  <meta name="description" content="Github+Octpressデプロイ Windows環境で _config.yml や 記事ファイルに日本語が含まれていて rake gen_deploy で invalid byte sequence in Windows-31J とエラーになる場合、環境変数 LANGを設定する。 LANG= &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -91,7 +90,19 @@
   </header>
 
 
-<div class="entry-content"><p>テスト</p>
+<div class="entry-content"><h1>Github+Octpressデプロイ</h1>
+
+<p>Windows環境で <code>_config.yml</code> や 記事ファイルに日本語が含まれていて <code>rake gen_deploy</code> で</p>
+
+<pre><code>invalid byte sequence in Windows-31J 
+</code></pre>
+
+<p>とエラーになる場合、環境変数 LANGを設定する。</p>
+
+<pre><code>LANG=ja_JP.utf8
+</code></pre>
+
+<p>みたいに。</p>
 </div>
 
 

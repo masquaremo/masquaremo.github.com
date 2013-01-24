@@ -4,7 +4,7 @@
   <title><![CDATA[φ(. . )めもめも]]></title>
   <link href="http://masquaremo.github.com/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-01-24T22:49:31+09:00</updated>
+  <updated>2013-01-24T22:58:35+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
     <name><![CDATA[masquaremo]]></name>
@@ -18,7 +18,19 @@
     <link href="http://masquaremo.github.com/blog/2013/01/24/first-post/"/>
     <updated>2013-01-24T22:22:00+09:00</updated>
     <id>http://masquaremo.github.com/blog/2013/01/24/first-post</id>
-    <content type="html"><![CDATA[<p>テスト</p>
+    <content type="html"><![CDATA[<h1>Github+Octpressデプロイ</h1>
+
+<p>Windows環境で <code>_config.yml</code> や 記事ファイルに日本語が含まれていて <code>rake gen_deploy</code> で</p>
+
+<pre><code>invalid byte sequence in Windows-31J 
+</code></pre>
+
+<p>とエラーになる場合、環境変数 LANGを設定する。</p>
+
+<pre><code>LANG=ja_JP.utf8
+</code></pre>
+
+<p>みたいに。</p>
 ]]></content>
   </entry>
   
