@@ -9,7 +9,11 @@
   <meta name="author" content="masquaremo">
 
   
-  <meta name="description" content="Github+Octpressデプロイ Windows環境で _config.yml や記事ファイルに日本語が含まれていて rake gen_deploy で invalid byte sequence in Windows-31J とエラーになる場合、環境変数 LANGを設定する。 LANG= &hellip;">
+  <meta name="description" content="Github+Octopressデプロイ デプロイ前の環境 Ruby Installerの Ruby 1.9.2-p290 インストール済み 手順 上記のサイトから、DevKitをダウンロード→インストール
+リポジトリをつくる。
+Octopressをインストール
+ブログの設定
+記事の投稿 関連情報 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -93,9 +97,29 @@
   </header>
 
 
-  <div class="entry-content"><h2>Github+Octpressデプロイ</h2>
+  <div class="entry-content"><h2>Github+Octopressデプロイ</h2>
 
-<p>Windows環境で _config.yml や記事ファイルに日本語が含まれていて <code>rake gen_deploy</code> で</p>
+<h3>デプロイ前の環境</h3>
+
+<ul>
+<li><a href="http://rubyinstaller.org/">Ruby Installer</a>の Ruby 1.9.2-p290 インストール済み</li>
+</ul>
+
+
+<h3>手順</h3>
+
+<ol>
+<li>上記のサイトから、DevKitをダウンロード→インストール</li>
+<li>リポジトリをつくる。</li>
+<li>Octopressをインストール</li>
+<li>ブログの設定</li>
+<li>記事の投稿</li>
+</ol>
+
+
+<h2>関連情報</h2>
+
+<p>Windows環境で _config.ymlファイルや記事ファイルに日本語が含まれていて <code>rake gen_deploy</code> で</p>
 
 <pre><code>invalid byte sequence in Windows-31J 
 </code></pre>

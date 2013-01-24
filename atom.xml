@@ -4,7 +4,7 @@
   <title><![CDATA[φ(. . )めもめも]]></title>
   <link href="http://masquaremo.github.com/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-01-24T22:59:58+09:00</updated>
+  <updated>2013-01-24T23:14:51+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
     <name><![CDATA[masquaremo]]></name>
@@ -18,9 +18,29 @@
     <link href="http://masquaremo.github.com/blog/2013/01/24/first-post/"/>
     <updated>2013-01-24T22:22:00+09:00</updated>
     <id>http://masquaremo.github.com/blog/2013/01/24/first-post</id>
-    <content type="html"><![CDATA[<h2>Github+Octpressデプロイ</h2>
+    <content type="html"><![CDATA[<h2>Github+Octopressデプロイ</h2>
 
-<p>Windows環境で _config.yml や記事ファイルに日本語が含まれていて <code>rake gen_deploy</code> で</p>
+<h3>デプロイ前の環境</h3>
+
+<ul>
+<li><a href="http://rubyinstaller.org/">Ruby Installer</a>の Ruby 1.9.2-p290 インストール済み</li>
+</ul>
+
+
+<h3>手順</h3>
+
+<ol>
+<li>上記のサイトから、DevKitをダウンロード→インストール</li>
+<li>リポジトリをつくる。</li>
+<li>Octopressをインストール</li>
+<li>ブログの設定</li>
+<li>記事の投稿</li>
+</ol>
+
+
+<h2>関連情報</h2>
+
+<p>Windows環境で _config.ymlファイルや記事ファイルに日本語が含まれていて <code>rake gen_deploy</code> で</p>
 
 <pre><code>invalid byte sequence in Windows-31J 
 </code></pre>
