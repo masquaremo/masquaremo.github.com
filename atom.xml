@@ -4,7 +4,7 @@
   <title><![CDATA[φ(. . )めもめも]]></title>
   <link href="http://masquaremo.github.com/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-01-24T23:39:01+09:00</updated>
+  <updated>2013-01-24T23:40:19+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
     <name><![CDATA[masquaremo]]></name>
@@ -30,12 +30,19 @@
 <h3>手順</h3>
 
 <ul>
-<li><p>上記のサイトから、DevKitをダウンロード→解凍</p>
+<li>上記のサイトから、DevKitをダウンロード→解凍</li>
+</ul>
 
-<p>  ruby dk.rb init<br/>
-  ruby dk.rb review<br/>
-  ruby dk.rb install</p></li>
-<li><p>リポジトリをつくる</p></li>
+
+<h6>インストールディレクトリに移動</h6>
+
+<pre><code>ruby dk.rb init  
+ruby dk.rb review  
+ruby dk.rb install  
+</code></pre>
+
+<ul>
+<li>リポジトリをつくる</li>
 <li>Octopressをインストール</li>
 <li>ブログの設定</li>
 <li>記事の投稿</li>
