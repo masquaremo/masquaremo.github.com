@@ -4,7 +4,7 @@
   <title><![CDATA[φ(. . )めもめも]]></title>
   <link href="http://masquaremo.github.com/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-01-26T00:22:31+09:00</updated>
+  <updated>2013-01-26T00:25:19+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
     <name><![CDATA[masquaremo]]></name>
@@ -21,6 +21,7 @@
     <content type="html"><![CDATA[<h2>デプロイ前の環境</h2>
 
 <ul>
+<li>Windows7</li>
 <li><a href="http://rubyinstaller.org/">Ruby Installer</a>の Ruby 1.9.2-p290 インストール済み</li>
 <li>msysgit 1.7.10 インストール済み</li>
 <li>GitHubアカウント登録済み</li>
