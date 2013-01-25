@@ -4,7 +4,7 @@
   <title><![CDATA[φ(. . )めもめも]]></title>
   <link href="http://masquaremo.github.com/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-01-26T08:28:27+09:00</updated>
+  <updated>2013-01-26T08:39:00+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
     <name><![CDATA[masquaremo]]></name>
@@ -18,7 +18,14 @@
     <link href="http://masquaremo.github.com/blog/2013/01/26/raspi_install_ruby/"/>
     <updated>2013-01-26T08:20:00+09:00</updated>
     <id>http://masquaremo.github.com/blog/2013/01/26/raspi_install_ruby</id>
-    <content type="html"><![CDATA[<h2>gitのインストール</h2>
+    <content type="html"><![CDATA[<h2>環境</h2>
+
+<ul>
+<li><a href="http://www.raspberrypi.org/downloads">Raspbian &#8220;wheezy&#8217; 2012-12-16版</a></li>
+</ul>
+
+
+<h2>gitのインストール</h2>
 
 <pre><code>sudo apt-get install git-core
 </code></pre>
@@ -46,7 +53,7 @@ sudo apt-get install build-essential bison
 <p>export MRUBY_HOME=(makeしたディレクトリ)<br/>
 export PATH=$PATH:$MRUBY_HOME/bin</p>
 
-<p>※.bashrcに</p>
+<p>※.bashrcにも</p>
 
 <h2>参考サイト</h2>
 
