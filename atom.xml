@@ -4,7 +4,7 @@
   <title><![CDATA[φ(. . )めもめも]]></title>
   <link href="http://masquaremo.github.com/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-01-26T00:01:36+09:00</updated>
+  <updated>2013-01-26T00:21:35+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
     <name><![CDATA[masquaremo]]></name>
@@ -22,6 +22,8 @@
 
 <ul>
 <li><a href="http://rubyinstaller.org/">Ruby Installer</a>の Ruby 1.9.2-p290 インストール済み</li>
+<li>msysgit 1.7.10 インストール済み</li>
+<li>GitHubアカウント登録済み</li>
 </ul>
 
 
@@ -41,13 +43,12 @@
 <h3>Ruby DevKitのインストール</h3>
 
 <ul>
-<li><p>上記の<a href="http://rubyinstaller.org/">Ruby Installer</a>のサイトから、DevKitをダウンロード→実行(解凍)<br/>
-※ダウンロードしたファイルを実行すると、わらわらと沢山のファイルが展開されるので、専用のディレクトリ(C:\DevKitとか)を作成して、そこで実行(解凍)するのがよい。</p></li>
-<li><p>解凍したディレクトリに移動し下記コマンドを入力</p></li>
+<li>上記の<a href="http://rubyinstaller.org/">Ruby Installer</a>のサイトから、DevKitをダウンロード→実行(解凍)<br/>
+※ダウンロードしたファイルを実行すると、わらわらと沢山のファイルが展開されるので、専用のディレクトリ(C:\DevKitとか)を作成して、そこで実行(解凍)するのがよい。</li>
 </ul>
 
 
-<p>#</p>
+<p>解凍したディレクトリに移動し下記コマンドを入力</p>
 
 <pre><code>ruby dk.rb init  
 ruby dk.rb review  
@@ -56,38 +57,42 @@ ruby dk.rb install
 
 <h3>GitHub-Pageのリポジトリをつくる</h3>
 
-<p>Todo:</p>
+<p>Todo:<br/>
+// Create New Repository<br/>
+// [hogehoge].github.com</p>
 
 <h3>Octopressをインストール</h3>
 
-<p>Todo:</p>
+<p>Todo:<br/>
+// git clone git://github.com/imathis/octopress.git octopress<br/>
+// cd octopress<br/>
+// sudo gem install bundler ← DevKitが無いとエラー<br/>
+// sudo bundle install<br/>
+// rake install</p>
 
 <h3>ブログの設定</h3>
 
-<p>Todo:</p>
+<p>Todo:<br/>
+// _config.ymlを編集</p>
 
 <h3>記事の投稿</h3>
 
-<p>Todo:</p>
+<p>Todo:<br/>
+// rake generate<br/>
+// rake deploy<br/>
+// rake gen_deploy<br/>
+// rake preview</p>
 
 <h2>関連情報</h2>
 
-<ul>
-<li>Windows環境で _config.ymlファイルや記事ファイルに日本語が含まれていて
-<code>rake gen_deploy</code> で</li>
-</ul>
-
-
-<p>#</p>
+<p> Windows環境で _config.ymlファイルや記事ファイルに日本語が含まれていて <code>rake gen_deploy</code> コマンドで</p>
 
 <pre><code>invalid byte sequence in Windows-31J 
 </code></pre>
 
 <p>とエラーになる場合、環境変数 LANGを設定する。</p>
 
-<p>#</p>
-
-<pre><code>LANG=ja_JP.utf8
+<pre><code>c:\&gt;set LANG=ja_JP.utf8
 </code></pre>
 
 <p>みたいに。</p>
