@@ -4,7 +4,7 @@
   <title><![CDATA[φ(. . )めもめも]]></title>
   <link href="http://masquaremo.github.com/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-01-26T08:39:00+09:00</updated>
+  <updated>2013-01-26T08:46:04+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
     <name><![CDATA[masquaremo]]></name>
@@ -25,6 +25,14 @@
 </ul>
 
 
+<p>事前に</p>
+
+<pre><code>sudo apt-get update
+sudo apt-get upgrade
+</code></pre>
+
+<p>を実施済み</p>
+
 <h2>gitのインストール</h2>
 
 <pre><code>sudo apt-get install git-core
@@ -32,7 +40,7 @@
 
 <h2>CRubyのインストール</h2>
 
-<pre><code>apt-get install ruby-core
+<pre><code>apt-get install ruby
 </code></pre>
 
 <h2>mrubyのインストール・ビルド</h2>
