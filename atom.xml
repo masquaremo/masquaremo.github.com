@@ -4,7 +4,7 @@
   <title><![CDATA[φ(. . )めもめも]]></title>
   <link href="http://masquaremo.github.com/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-01-26T08:46:04+09:00</updated>
+  <updated>2013-01-26T08:47:10+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
     <name><![CDATA[masquaremo]]></name>
@@ -40,7 +40,7 @@ sudo apt-get upgrade
 
 <h2>CRubyのインストール</h2>
 
-<pre><code>apt-get install ruby
+<pre><code>sudo apt-get install ruby
 </code></pre>
 
 <h2>mrubyのインストール・ビルド</h2>
