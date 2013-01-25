@@ -9,11 +9,8 @@
   <meta name="author" content="masquaremo">
 
   
-  <meta name="description" content="デプロイ前の環境 Windows7
-Ruby Installerの Ruby 1.9.2-p290 インストール済み
-msysgit 1.7.10 インストール済み
-GitHubアカウント登録済み 大まかな流れ Ruby DevKitのインストール
-GitHub-Pageのリポジトリをつくる &hellip;">
+  <meta name="description" content="gitのインストール sudo apt-get install git-core CRubyのインストール apt-get install ruby-core mrubyのインストール・ビルド git clone git://github.com/mruby/mruby.git
+sudo apt- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -68,6 +65,74 @@ GitHub-Pageのリポジトリをつくる &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/26/raspi_install_ruby/">Raspberry Pi - CRubyとmrubyのインストール</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-26T08:20:00+09:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>gitのインストール</h2>
+
+<pre><code>sudo apt-get install git-core
+</code></pre>
+
+<h2>CRubyのインストール</h2>
+
+<pre><code>apt-get install ruby-core
+</code></pre>
+
+<h2>mrubyのインストール・ビルド</h2>
+
+<pre><code>git clone git://github.com/mruby/mruby.git
+sudo apt-get install build-essential bison
+</code></pre>
+
+<p>mrubyディレクトリ下で</p>
+
+<pre><code>make
+</code></pre>
+
+<p>※先にCRubyを入れていないとmakeできない</p>
+
+<h2>環境変数</h2>
+
+<p>export MRUBY_HOME=(makeしたディレクトリ)<br/>
+export PATH=$PATH:$MRUBY_HOME/bin</p>
+
+<p>※.bashrcに</p>
+
+<h2>参考サイト</h2>
+
+<p><a href="http://geekmonkey.org/articles/37-building-mruby-on-the-raspberry-pi">http://geekmonkey.org/articles/37-building-mruby-on-the-raspberry-pi</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -206,6 +271,10 @@ rake preview
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/26/raspi_install_ruby/">Raspberry Pi - CRubyとmrubyのインストール</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/01/24/first-post/">Github+Octopressデプロイ</a>

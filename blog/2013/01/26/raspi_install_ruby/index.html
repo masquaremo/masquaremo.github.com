@@ -5,13 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - φ(. . )めもめも</title>
+  <title>Raspberry Pi - CRubyとmrubyのインストール - φ(. . )めもめも</title>
   <meta name="author" content="masquaremo">
 
   
-  <meta name="description" content="Blog Archive 2013 Raspberry Pi - CRubyとmrubyのインストール
-Jan 26 2013 Github+Octopressデプロイ
-Jan 24 2013 Recent Posts Raspberry Pi - CRubyとmrubyのインストール &hellip;">
+  <meta name="description" content="gitのインストール sudo apt-get install git-core CRubyのインストール apt-get install ruby-core mrubyのインストール・ビルド git clone git://github.com/mruby/mruby.git
+sudo apt- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +19,7 @@ Jan 24 2013 Recent Posts Raspberry Pi - CRubyとmrubyのインストール &hell
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://masquaremo.github.com/blog/archives/">
+  <link rel="canonical" href="http://masquaremo.github.com/blog/2013/01/26/raspi_install_ruby/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -65,41 +64,110 @@ Jan 24 2013 Recent Posts Raspberry Pi - CRubyとmrubyのインストール &hell
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">Raspberry Pi - CRubyとmrubyのインストール</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-26T08:20:00+09:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><h2>gitのインストール</h2>
 
-  
-  <h2>2013</h2>
+<pre><code>sudo apt-get install git-core
+</code></pre>
 
-<article>
-  
-<h1><a href="/blog/2013/01/26/raspi_install_ruby/">Raspberry Pi - CRubyとmrubyのインストール</a></h1>
-<time datetime="2013-01-26T08:20:00+09:00" pubdate><span class='month'>Jan</span> <span class='day'>26</span> <span class='year'>2013</span></time>
+<h2>CRubyのインストール</h2>
 
+<pre><code>apt-get install ruby-core
+</code></pre>
 
-</article>
+<h2>mrubyのインストール・ビルド</h2>
 
+<pre><code>git clone git://github.com/mruby/mruby.git
+sudo apt-get install build-essential bison
+</code></pre>
 
+<p>mrubyディレクトリ下で</p>
 
-<article>
-  
-<h1><a href="/blog/2013/01/24/first-post/">Github+Octopressデプロイ</a></h1>
-<time datetime="2013-01-24T22:22:00+09:00" pubdate><span class='month'>Jan</span> <span class='day'>24</span> <span class='year'>2013</span></time>
+<pre><code>make
+</code></pre>
 
+<p>※先にCRubyを入れていないとmakeできない</p>
 
-</article>
+<h2>環境変数</h2>
 
+<p>export MRUBY_HOME=(makeしたディレクトリ)<br/>
+export PATH=$PATH:$MRUBY_HOME/bin</p>
+
+<p>※.bashrcに</p>
+
+<h2>参考サイト</h2>
+
+<p><a href="http://geekmonkey.org/articles/37-building-mruby-on-the-raspberry-pi">http://geekmonkey.org/articles/37-building-mruby-on-the-raspberry-pi</a></p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">masquaremo</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-26T08:20:00+09:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://masquaremo.github.com/blog/2013/01/26/raspi_install_ruby/" data-via="" data-counturl="http://masquaremo.github.com/blog/2013/01/26/raspi_install_ruby/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/01/24/first-post/" title="Previous Post: Github+Octopressデプロイ">&laquo; Github+Octopressデプロイ</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>

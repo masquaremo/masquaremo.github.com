@@ -4,7 +4,7 @@
   <title><![CDATA[φ(. . )めもめも]]></title>
   <link href="http://masquaremo.github.com/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-01-26T00:41:25+09:00</updated>
+  <updated>2013-01-26T08:28:27+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
     <name><![CDATA[masquaremo]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Raspberry Pi - CRubyとmrubyのインストール]]></title>
+    <link href="http://masquaremo.github.com/blog/2013/01/26/raspi_install_ruby/"/>
+    <updated>2013-01-26T08:20:00+09:00</updated>
+    <id>http://masquaremo.github.com/blog/2013/01/26/raspi_install_ruby</id>
+    <content type="html"><![CDATA[<h2>gitのインストール</h2>
+
+<pre><code>sudo apt-get install git-core
+</code></pre>
+
+<h2>CRubyのインストール</h2>
+
+<pre><code>apt-get install ruby-core
+</code></pre>
+
+<h2>mrubyのインストール・ビルド</h2>
+
+<pre><code>git clone git://github.com/mruby/mruby.git
+sudo apt-get install build-essential bison
+</code></pre>
+
+<p>mrubyディレクトリ下で</p>
+
+<pre><code>make
+</code></pre>
+
+<p>※先にCRubyを入れていないとmakeできない</p>
+
+<h2>環境変数</h2>
+
+<p>export MRUBY_HOME=(makeしたディレクトリ)<br/>
+export PATH=$PATH:$MRUBY_HOME/bin</p>
+
+<p>※.bashrcに</p>
+
+<h2>参考サイト</h2>
+
+<p><a href="http://geekmonkey.org/articles/37-building-mruby-on-the-raspberry-pi">http://geekmonkey.org/articles/37-building-mruby-on-the-raspberry-pi</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Github+Octopressデプロイ]]></title>
