@@ -4,7 +4,7 @@
   <title><![CDATA[Category: RaspberryPi | φ(. . )めもめも]]></title>
   <link href="http://masquaremo.github.com/blog/categories/raspberrypi/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-01-26T15:19:23+09:00</updated>
+  <updated>2013-01-26T15:20:44+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
     <name><![CDATA[masquaremo]]></name>
@@ -30,7 +30,7 @@ end
 </code></pre></noscript></div>
 </p>
 
-<pre><code>sudo ruby gpio.rb
+<pre><code>sudo ruby gpio4.rb
 </code></pre>
 
 <p><img src="http://dl.dropbox.com/u/54355699/github/raspi01.JPG" alt="RubyでLチカ" /></p>
