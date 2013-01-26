@@ -4,7 +4,7 @@
   <title><![CDATA[Category: RaspberryPi | φ(. . )めもめも]]></title>
   <link href="http://masquaremo.github.com/blog/categories/raspberrypi/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-01-26T14:43:20+09:00</updated>
+  <updated>2013-01-26T15:10:43+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
     <name><![CDATA[masquaremo]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[RaspberryPi - CRubyでLチカ]]></title>
+    <link href="http://masquaremo.github.com/blog/2013/01/26/raspi_gpio_ruby002/"/>
+    <updated>2013-01-26T15:00:00+09:00</updated>
+    <id>http://masquaremo.github.com/blog/2013/01/26/raspi_gpio_ruby002</id>
+    <content type="html"><![CDATA[<p>デバイスファイルを使用した、GPIO制御。</p>
+
+<p><div><script src='https://gist.github.com/4635396.js'></script>
+<noscript><pre><code>system('echo &quot;4&quot; &gt; /sys/class/gpio/export')
+system('echo &quot;out&quot; &gt; /sys/class/gpio/gpio4/direction')
+[0, 1].cycle do |sw|
+  system(&quot;echo #{sw} &gt; /sys/class/gpio/gpio4/value&quot;)
+  sleep(0.5)
+end
+</code></pre></noscript></div>
+</p>
+
+<p><img src="http://dl.dropbox.com/u/54355699/github/raspi01.JPG" alt="RubyでLチカ" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[RaspberryPi - CRubyとmrubyのインストール]]></title>

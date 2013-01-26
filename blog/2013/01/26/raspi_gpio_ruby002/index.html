@@ -5,11 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: RaspberryPi - φ(. . )めもめも</title>
+  <title>RaspberryPi - CRubyでLチカ - φ(. . )めもめも</title>
   <meta name="author" content="masquaremo">
 
   
-  <meta name="description" content="Category: RaspberryPi">
+  <meta name="description" content="デバイスファイルを使用した、GPIO制御。 system('echo &quot;4&quot; &gt; /sys/class/gpio/export')
+system('echo &quot;out&quot; &gt; /sys/class/gpio/gpio4/direction')
+[0 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://masquaremo.github.comblog/categories/raspberrypi/">
+  <link rel="canonical" href="http://masquaremo.github.com/blog/2013/01/26/raspi_gpio_ruby002/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -63,49 +65,96 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: RaspberryPi</h1>
+    
+      <h1 class="entry-title">RaspberryPi - CRubyでLチカ</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-26T15:00:00+09:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>デバイスファイルを使用した、GPIO制御。</p>
 
-  
-  <h2>2013</h2>
-
-<article>
-  
-<h1><a href="/blog/2013/01/26/raspi_gpio_ruby002/">RaspberryPi - CRubyでLチカ</a></h1>
-<time datetime="2013-01-26T15:00:00+09:00" pubdate><span class='month'>Jan</span> <span class='day'>26</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/raspberrypi/'>RaspberryPi</a></span>
-</footer>
+<div><script src='https://gist.github.com/4635396.js'></script>
+<noscript><pre><code>system('echo &quot;4&quot; &gt; /sys/class/gpio/export')
+system('echo &quot;out&quot; &gt; /sys/class/gpio/gpio4/direction')
+[0, 1].cycle do |sw|
+  system(&quot;echo #{sw} &gt; /sys/class/gpio/gpio4/value&quot;)
+  sleep(0.5)
+end
+</code></pre></noscript></div>
 
 
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2013/01/26/raspi_install_ruby/">RaspberryPi - CRubyとmrubyのインストール</a></h1>
-<time datetime="2013-01-26T08:20:00+09:00" pubdate><span class='month'>Jan</span> <span class='day'>26</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/raspberrypi/'>RaspberryPi</a></span>
-</footer>
-
-
-</article>
-
+<p><img src="http://dl.dropbox.com/u/54355699/github/raspi01.JPG" alt="RubyでLチカ" /></p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">masquaremo</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-26T15:00:00+09:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/raspberrypi/'>RaspberryPi</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://masquaremo.github.com/blog/2013/01/26/raspi_gpio_ruby002/" data-via="" data-counturl="http://masquaremo.github.com/blog/2013/01/26/raspi_gpio_ruby002/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/01/26/raspi_install_ruby/" title="Previous Post: RaspberryPi - CRubyとmrubyのインストール">&laquo; RaspberryPi - CRubyとmrubyのインストール</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>
