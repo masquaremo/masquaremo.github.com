@@ -4,7 +4,7 @@
   <title><![CDATA[Category: RaspberryPi | φ(. . )めもめも]]></title>
   <link href="http://masquaremo.github.com/blog/categories/raspberrypi/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-01-26T13:52:51+09:00</updated>
+  <updated>2013-01-26T14:43:20+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
     <name><![CDATA[masquaremo]]></name>
@@ -54,7 +54,7 @@ sudo apt-get install build-essential bison
 <pre><code>make
 </code></pre>
 
-<p>※先にCRubyを入れていないとmakeできない</p>
+<p>※先にCRubyを入れていないと途中でエラーになる</p>
 
 <h2>環境変数</h2>
 
