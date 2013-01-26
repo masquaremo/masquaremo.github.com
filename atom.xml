@@ -4,7 +4,7 @@
   <title><![CDATA[φ(. . )めもめも]]></title>
   <link href="http://masquaremo.github.com/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-01-26T15:10:43+09:00</updated>
+  <updated>2013-01-26T15:19:23+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
     <name><![CDATA[masquaremo]]></name>
@@ -29,6 +29,9 @@ system('echo &quot;out&quot; &gt; /sys/class/gpio/gpio4/direction')
 end
 </code></pre></noscript></div>
 
+
+<pre><code>sudo ruby gpio.rb
+</code></pre>
 
 <p><img src="http://dl.dropbox.com/u/54355699/github/raspi01.JPG" alt="RubyでLチカ" /></p>
 ]]></content>
