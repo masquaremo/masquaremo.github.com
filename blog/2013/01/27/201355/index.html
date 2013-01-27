@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>φ(. . )めもめも</title>
+  <title>RaspberryPi - C言語でLチカ(レジスタ直接制御) - φ(. . )めもめも</title>
   <meta name="author" content="masquaremo">
 
   
@@ -22,7 +22,7 @@ Rev2基板用にすこし修正して動作させた。(48行目～)
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://masquaremo.github.com/">
+  <link rel="canonical" href="http://masquaremo.github.com/blog/2013/01/27/201355/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -66,15 +66,12 @@ Rev2基板用にすこし修正して動作させた。(48行目～)
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/01/27/201355/">RaspberryPi - C言語でLチカ(レジスタ直接制御)</a></h1>
+      <h1 class="entry-title">RaspberryPi - C言語でLチカ(レジスタ直接制御)</h1>
     
     
       <p class="meta">
@@ -97,7 +94,7 @@ Rev2基板用にすこし修正して動作させた。(48行目～)
   </header>
 
 
-  <div class="entry-content"><p>雑誌インターフェース 2012年12月号の
+<div class="entry-content"><p>雑誌インターフェース 2012年12月号の
 <a href="http://www.cqpub.co.jp/interface/download/contents.htm">サンプルプログラム</a>
 (おそらくオリジナルは<a href="http://elinux.org/RPi_Low-level_peripherals#GPIO_Driving_Example_.28C.29">ここ</a>)を、
 Rev2基板用にすこし修正して動作させた。(48行目～)<br/>
@@ -328,73 +325,16 @@ int main(int argc, char **argv)
 
 
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/26/raspi_gpio_ruby/">RaspberryPi - CRubyでLチカ</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">masquaremo</span></span>
 
-<time datetime="2013-01-26T15:00:00+09:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>デバイスファイルを使用した、GPIO制御。</p>
-
-<div><script src='https://gist.github.com/4635396.js'></script>
-<noscript><pre><code>system('echo &quot;4&quot; &gt; /sys/class/gpio/export')
-system('echo &quot;out&quot; &gt; /sys/class/gpio/gpio4/direction')
-[0, 1].cycle do |sw|
-  system(&quot;echo #{sw} &gt; /sys/class/gpio/gpio4/value&quot;)
-  sleep(0.5)
-end
-</code></pre></noscript></div>
-
-
-<pre><code>sudo ruby gpio4.rb
-</code></pre>
-
-<p><img src="http://dl.dropbox.com/u/54355699/github/raspi01.JPG" alt="RubyでLチカ" /></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/26/raspi_install_ruby/">RaspberryPi - CRubyとmrubyのインストール</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -406,201 +346,32 @@ end
   
 
 
-<time datetime="2013-01-26T08:20:00+09:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>環境</h2>
-
-<ul>
-<li><a href="http://www.raspberrypi.org/downloads">Raspbian &#8220;wheezy&#8217; 2012-12-16版</a></li>
-</ul>
-
-
-<p>事前に</p>
-
-<pre><code>sudo apt-get update
-sudo apt-get upgrade
-</code></pre>
-
-<p>を実施済み</p>
-
-<h2>gitのインストール</h2>
-
-<pre><code>sudo apt-get install git-core
-</code></pre>
-
-<h2>CRubyのインストール</h2>
-
-<pre><code>sudo apt-get install ruby
-</code></pre>
-
-<h2>mrubyのインストール・ビルド</h2>
-
-<pre><code>git clone git://github.com/mruby/mruby.git
-sudo apt-get install build-essential bison
-</code></pre>
-
-<p>mrubyディレクトリ下で</p>
-
-<pre><code>make
-</code></pre>
-
-<p>※先にCRubyを入れていないと途中でエラーになる</p>
-
-<h2>環境変数</h2>
-
-<pre><code>export MRUBY_HOME=(makeしたディレクトリ)  
-export PATH=$PATH:$MRUBY_HOME/bin  
-</code></pre>
-
-<p>※.bashrcにも</p>
-
-<h2>参考サイト</h2>
-
-<p><a href="http://geekmonkey.org/articles/37-building-mruby-on-the-raspberry-pi">http://geekmonkey.org/articles/37-building-mruby-on-the-raspberry-pi</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2013-01-27T20:13:00+09:00" pubdate data-updated="true">Jan 27<span>th</span>, 2013</time>
       
-  <header>
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/2013/01/24/first-post/">Github+Octopressデプロイ</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
+      <div class="sharing">
   
-
-
-<time datetime="2013-01-24T22:22:00+09:00" pubdate data-updated="true">Jan 24<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>デプロイ前の環境</h2>
-
-<ul>
-<li>Windows7</li>
-<li><a href="http://rubyinstaller.org/">Ruby Installer</a>の Ruby 1.9.2-p290 インストール済み</li>
-<li>msysgit 1.7.10 インストール済み</li>
-<li>GitHubアカウント登録済み</li>
-</ul>
-
-
-<h2>大まかな流れ</h2>
-
-<ul>
-<li>Ruby DevKitのインストール</li>
-<li>GitHub-Pageのリポジトリをつくる</li>
-<li>Octopressをインストール</li>
-<li>ブログの設定</li>
-<li>記事の投稿</li>
-</ul>
-
-
-<h2>手順</h2>
-
-<h3>Ruby DevKitのインストール</h3>
-
-<ul>
-<li>上記の<a href="http://rubyinstaller.org/">Ruby Installer</a>のサイトから、DevKitをダウンロード→実行(解凍)<br/>
-※ダウンロードしたファイルを実行すると、わらわらと沢山のファイルが展開されるので、専用のディレクトリ(C:\DevKitとか)を作成して、そこで実行(解凍)するのがよい。</li>
-</ul>
-
-
-<p>解凍したディレクトリに移動し下記コマンドを入力</p>
-
-<pre><code>ruby dk.rb init  
-ruby dk.rb review  
-ruby dk.rb install  
-</code></pre>
-
-<h3>GitHub-Pagesのリポジトリをつくる</h3>
-
-<p><a href="https://github.com/new">リポジトリ作成画面</a>のRepository nameの項目に</p>
-
-<pre><code>アカウント名.github.com  
-</code></pre>
-
-<p>と、いうリポジトリを作成する</p>
-
-<h3>Octopressをインストール</h3>
-
-<pre><code>git clone git://github.com/imathis/octopress.git octopress  
-cd octopress  
-sudo gem install bundler  ← DevKitが無いとエラー  
-sudo bundle install  
-rake install  
-</code></pre>
-
-<h3>ブログの設定</h3>
-
-<p><code>_config.yml</code>を編集</p>
-
-<p>とりあえず、<code>title:</code> と <code>subtitle:</code>くらい？</p>
-
-<h3>記事の投稿</h3>
-
-<pre><code>rake generate  
-rake deploy  
-rake gen_deploy  ← generate と deploy を同時に行う
-rake preview  ← localhost:4000でWebサーバ起動
-</code></pre>
-
-<h2>関連情報</h2>
-
-<p> Windows環境で _config.ymlファイルや記事ファイルに日本語が含まれていて <code>rake gen_deploy</code> コマンドで</p>
-
-<pre><code>invalid byte sequence in Windows-31J 
-</code></pre>
-
-<p>とエラーになる場合、環境変数 LANGを設定する。</p>
-
-<pre><code>c:\&gt;set LANG=ja_JP.utf8
-</code></pre>
-
-<p>みたいに。</p>
-
-<h2>参考サイト</h2>
-
-<p><a href="http://d.hatena.ne.jp/hackugyo/20110612/1307830385">http://d.hatena.ne.jp/hackugyo/20110612/1307830385</a>
-<a href="http://www.hisasann.com/blog/2012/10/06/first-post/">http://www.hisasann.com/blog/2012/10/06/first-post/</a>
-<a href="http://mattn.kaoriya.net/software/lang/ruby/20111017205717.htm">http://mattn.kaoriya.net/software/lang/ruby/20111017205717.htm</a>
-<a href="http://www.sankitch.me/blog/2012/05/05/build-octopress-on-github-dropbox/">http://www.sankitch.me/blog/2012/05/05/build-octopress-on-github-dropbox/</a>
-<a href="http://sesame.github.com/blog/2012/12/09/how-to-use-octopress/">http://sesame.github.com/blog/2012/12/09/how-to-use-octopress/</a></p>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://masquaremo.github.com/blog/2013/01/27/201355/" data-via="" data-counturl="http://masquaremo.github.com/blog/2013/01/27/201355/" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/01/26/raspi_gpio_ruby/" title="Previous Post: RaspberryPi - CRubyでLチカ">&laquo; RaspberryPi - CRubyでLチカ</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -633,6 +404,7 @@ rake preview  ← localhost:4000でWebサーバ起動
 
   
 </aside>
+
 
     </div>
   </div>
