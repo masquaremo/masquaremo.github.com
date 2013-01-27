@@ -134,34 +134,34 @@ ruby dk.rb install
 
 <h3>GitHub-Pagesのリポジトリをつくる</h3>
 
-<p>Todo:<br/>
-// Create New Repository<br/>
-// [hogehoge].github.com</p>
+<p><a href="https://github.com/new">リポジトリ作成画面</a>のRepository nameの項目に</p>
+
+<pre><code>アカウント名.github.com  
+</code></pre>
+
+<p>と、いうリポジトリを作成する</p>
 
 <h3>Octopressをインストール</h3>
 
-<p>Todo:</p>
-
 <pre><code>git clone git://github.com/imathis/octopress.git octopress  
 cd octopress  
-sudo gem install bundler ← DevKitが無いとエラー  
+sudo gem install bundler  ← DevKitが無いとエラー  
 sudo bundle install  
 rake install  
 </code></pre>
 
 <h3>ブログの設定</h3>
 
-<p>Todo:<br/>
-_config.ymlを編集</p>
+<p><code>_config.yml</code>を編集</p>
+
+<p>とりあえず、<code>title:</code> と <code>subtitle:</code>くらい？</p>
 
 <h3>記事の投稿</h3>
 
-<p>Todo:</p>
-
 <pre><code>rake generate  
 rake deploy  
-rake gen_deploy  
-rake preview  
+rake gen_deploy  ← generate と deploy を同時に行う
+rake preview  ← localhost:4000でWebサーバ起動
 </code></pre>
 
 <h2>関連情報</h2>
