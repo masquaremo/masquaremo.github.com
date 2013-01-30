@@ -13,7 +13,8 @@
 サンプルプログラム
 (おそらくオリジナルはここ)を、
 Rev2基板用にすこし修正して動作させた。(48行目～)
-それと、サンプルプログラムのGPIO4がなぜか無効になっていた(何故？)ので使えるように。 &hellip;">
+それと、サンプルプログラムのGPIO4が無効になっていた(何故？)ので使えるように。
+※ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -98,20 +99,22 @@ Rev2基板用にすこし修正して動作させた。(48行目～)
 <a href="http://www.cqpub.co.jp/interface/download/contents.htm">サンプルプログラム</a>
 (おそらくオリジナルは<a href="http://elinux.org/RPi_Low-level_peripherals#GPIO_Driving_Example_.28C.29">ここ</a>)を、
 Rev2基板用にすこし修正して動作させた。(48行目～)<br/>
-それと、サンプルプログラムのGPIO4がなぜか無効になっていた(何故？)ので使えるように。</p>
+それと、サンプルプログラムのGPIO4が無効になっていた(何故？)ので使えるように。<br/>
+※下記のコードもGPIO4を10回点滅させるようにしている。</p>
 
 <p>Rev2のピンヘッダのGPIO情報は<a href="http://elinux.org/RPi_Low-level_peripherals#General_Purpose_Input.2FOutput_.28GPIO.29">こちら</a>の少し下あたり。</p>
 
-<pre><code>gcc gpio_c.c
-sudo ./a.out
+<pre><code>$ gcc gpio_c.c
+$ sudo ./a.out
 </code></pre>
 
-<h2>レジスタへのアクセス動作のしくみ</h2>
+<h2>レジスタへ直接アクセス出来るようにする手順</h2>
 
 <ol>
 <li>malloc()で、仮想メモリ空間のメモリ領域を確保</li>
+<li>確保したメモリ領域内から、4Kバウンダリのアドレスを求める</li>
 <li>/dev/mem と mmap()で、確保したメモリ領域をレジスタ領域にマッピング</li>
-<li>mmap()がレジスタのアドレスを返す</li>
+<li>mmap()からマッピングされたレジスタのアドレスが返る</li>
 <li>mmap()が返したアドレス＋オフセットで各レジスタにアクセスする</li>
 </ol>
 
@@ -323,7 +326,10 @@ int main(int argc, char **argv)
 </code></pre></noscript></div>
 
 
+<p>※ そういえば、あまり見かけないけど型修飾子のintは省略できる。</p>
 
+<pre><code>volatile unsigned *gpio;
+</code></pre>
 </div>
 
 
@@ -372,6 +378,8 @@ int main(int argc, char **argv)
         <a class="basic-alignment left" href="/blog/2013/01/26/raspi_gpio_ruby/" title="Previous Post: RaspberryPi - CRubyでLチカ">&laquo; RaspberryPi - CRubyでLチカ</a>
       
       
+        <a class="basic-alignment right" href="/blog/2013/01/28/215710/" title="Next Post: RaspberryPi - WiringPiライブラリのインストール">RaspberryPi - WiringPiライブラリのインストール &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -385,19 +393,23 @@ int main(int argc, char **argv)
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/29/223449/">RaspberryPi - C言語でPWM制御。からの、Ruby用ライブラリ作成(つづき)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/29/223448/">RaspberryPi - C言語でPWM制御。からの、Ruby用ライブラリ作成</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/28/215710/">RaspberryPi - WiringPiライブラリのインストール</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/27/201355/">RaspberryPi - C言語でLチカ(レジスタ直接制御)</a>
       </li>
     
       <li class="post">
         <a href="/blog/2013/01/26/raspi_gpio_ruby/">RaspberryPi - CRubyでLチカ</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/26/raspi_install_ruby/">RaspberryPi - CRubyとmrubyのインストール</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/24/first-post/">Github+Octopressデプロイ</a>
       </li>
     
   </ul>

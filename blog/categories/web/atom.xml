@@ -4,7 +4,7 @@
   <title><![CDATA[Category: web | φ(. . )めもめも]]></title>
   <link href="http://masquaremo.github.com/blog/categories/web/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-01-27T23:11:08+09:00</updated>
+  <updated>2013-01-30T22:00:59+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
     <name><![CDATA[masquaremo]]></name>
@@ -104,11 +104,11 @@ rake preview  ← localhost:4000でWebサーバ起動
 
 <h2>参考サイト</h2>
 
-<p><a href="http://d.hatena.ne.jp/hackugyo/20110612/1307830385">http://d.hatena.ne.jp/hackugyo/20110612/1307830385</a>
-<a href="http://www.hisasann.com/blog/2012/10/06/first-post/">http://www.hisasann.com/blog/2012/10/06/first-post/</a>
-<a href="http://mattn.kaoriya.net/software/lang/ruby/20111017205717.htm">http://mattn.kaoriya.net/software/lang/ruby/20111017205717.htm</a>
-<a href="http://www.sankitch.me/blog/2012/05/05/build-octopress-on-github-dropbox/">http://www.sankitch.me/blog/2012/05/05/build-octopress-on-github-dropbox/</a>
-<a href="http://sesame.github.com/blog/2012/12/09/how-to-use-octopress/">http://sesame.github.com/blog/2012/12/09/how-to-use-octopress/</a></p>
+<p><a href="http://www.hisasann.com/blog/2012/10/06/first-post/">Githubを使って独自ブログをはじめる方法メモ</a><br/>
+<a href="http://mattn.kaoriya.net/software/lang/ruby/20111017205717.htm">githubとjekyllとoctopressで作る簡単でモダンなブログ</a><br/>
+<a href="http://www.sankitch.me/blog/2012/05/05/build-octopress-on-github-dropbox/">Octopress + Github Pages + Dropbox でブログを構築</a><br/>
+<a href="http://sesame.github.com/blog/2012/12/09/how-to-use-octopress/">Octopressの使い方</a><br/>
+<a href="http://d.hatena.ne.jp/hackugyo/20110612/1307830385">DevKitを使わないとgemが入らない場合(pikを使っていてもだいじょうぶ)</a></p>
 ]]></content>
   </entry>
   

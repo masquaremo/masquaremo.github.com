@@ -9,8 +9,8 @@
   <meta name="author" content="masquaremo">
 
   
-  <meta name="description" content="環境 Raspbian &#8220;wheezy&#8217; 2012-12-16版 事前に sudo apt-get update
-sudo apt-get upgrade を実施済み gitのインストール sudo apt-get install git-core CRubyのインストール &hellip;">
+  <meta name="description" content="環境 Raspbian &#8220;wheezy&#8217; 2012-12-16版 事前に $ sudo apt-get update
+$ sudo apt-get upgrade を実施済み gitのインストール $ sudo apt-get install git-core &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,46 +100,46 @@ sudo apt-get upgrade を実施済み gitのインストール sudo apt-get insta
 
 <p>事前に</p>
 
-<pre><code>sudo apt-get update
-sudo apt-get upgrade
+<pre><code>$ sudo apt-get update
+$ sudo apt-get upgrade
 </code></pre>
 
 <p>を実施済み</p>
 
 <h2>gitのインストール</h2>
 
-<pre><code>sudo apt-get install git-core
+<pre><code>$ sudo apt-get install git-core
 </code></pre>
 
 <h2>CRubyのインストール</h2>
 
-<pre><code>sudo apt-get install ruby
+<pre><code>$ sudo apt-get install ruby
 </code></pre>
 
 <h2>mrubyのインストール・ビルド</h2>
 
-<pre><code>git clone git://github.com/mruby/mruby.git
-sudo apt-get install build-essential bison
+<pre><code>$ git clone git://github.com/mruby/mruby.git
+$ sudo apt-get install build-essential bison
 </code></pre>
 
 <p>mrubyディレクトリ下で</p>
 
-<pre><code>make
+<pre><code>$ make
 </code></pre>
 
 <p>※先にCRubyを入れていないと途中でエラーになる</p>
 
 <h2>環境変数</h2>
 
-<pre><code>export MRUBY_HOME=(makeしたディレクトリ)  
-export PATH=$PATH:$MRUBY_HOME/bin  
+<pre><code>$ export MRUBY_HOME=(makeしたディレクトリ)  
+$ export PATH=$PATH:$MRUBY_HOME/bin  
 </code></pre>
 
 <p>※.bashrcにも</p>
 
 <h2>参考サイト</h2>
 
-<p><a href="http://geekmonkey.org/articles/37-building-mruby-on-the-raspberry-pi">http://geekmonkey.org/articles/37-building-mruby-on-the-raspberry-pi</a></p>
+<p><a href="http://geekmonkey.org/articles/37-building-mruby-on-the-raspberry-pi">Building mruby on the Raspberry Pi</a></p>
 </div>
 
 
@@ -167,7 +167,7 @@ export PATH=$PATH:$MRUBY_HOME/bin
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/raspberrypi/'>RaspberryPi</a>
+    <a class='category' href='/blog/categories/raspberrypi/'>RaspberryPi</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
   
 </span>
 
@@ -203,19 +203,23 @@ export PATH=$PATH:$MRUBY_HOME/bin
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/29/223449/">RaspberryPi - C言語でPWM制御。からの、Ruby用ライブラリ作成(つづき)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/29/223448/">RaspberryPi - C言語でPWM制御。からの、Ruby用ライブラリ作成</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/28/215710/">RaspberryPi - WiringPiライブラリのインストール</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/27/201355/">RaspberryPi - C言語でLチカ(レジスタ直接制御)</a>
       </li>
     
       <li class="post">
         <a href="/blog/2013/01/26/raspi_gpio_ruby/">RaspberryPi - CRubyでLチカ</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/26/raspi_install_ruby/">RaspberryPi - CRubyとmrubyのインストール</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/24/first-post/">Github+Octopressデプロイ</a>
       </li>
     
   </ul>

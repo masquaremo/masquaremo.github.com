@@ -4,7 +4,7 @@
   <title><![CDATA[φ(. . )めもめも]]></title>
   <link href="http://masquaremo.github.com/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-01-27T23:11:08+09:00</updated>
+  <updated>2013-01-30T22:00:59+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
     <name><![CDATA[masquaremo]]></name>
@@ -12,6 +12,395 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[RaspberryPi - C言語でPWM制御。からの、Ruby用ライブラリ作成(つづき)]]></title>
+    <link href="http://masquaremo.github.com/blog/2013/01/29/223449/"/>
+    <updated>2013-01-29T22:35:00+09:00</updated>
+    <id>http://masquaremo.github.com/blog/2013/01/29/223449</id>
+    <content type="html"><![CDATA[<p><a href="http://masquaremo.github.com/blog/2013/01/29/223448/">前回</a>のつづき。</p>
+
+<h2>Rubyライブラリの作成</h2>
+
+<p><a href="http://masquaremo.github.com/blog/2013/01/29/223448/">前回</a>のプログラムの関数をRubyで使用できるようにライブラリ化</p>
+
+<h3>Swigのインストール</h3>
+
+<pre><code>$ sudo apt-get install swig
+</code></pre>
+
+<h3>定義ファイルを書く</h3>
+
+<p>ライブラリに登録する関数を<code>pwm.i</code>というファイルに記述する</p>
+
+<h6>登録する関数</h6>
+
+<pre><code>set_range
+set_duty
+hw_initialize
+</code></pre>
+
+<h6>pwm.iの内容</h6>
+
+<pre><code>%module pwmlib
+%{
+extern volatile unsigned * io_mapping(int base_addr);
+extern void hw_initialize();
+extern void set_range(int range);
+extern void set_duty(int duty);
+
+%}
+%init
+%{
+hw_initialize();
+%}
+
+extern void set_range(int range);
+extern void set_duty(int duty);
+</code></pre>
+
+<h3>ラッパー関数作成</h3>
+
+<p>siwgを使用し、ruby用のラッパー関数を作成する。</p>
+
+<pre><code>$ swig -ruby pwm.i
+</code></pre>
+
+<p><code>pwm_wrap.c</code>が生成される</p>
+
+<h3>Makefileの生成</h3>
+
+<p><code>extconf.rb</code>を作成して実行する</p>
+
+<h6>extconf.rbの内容</h6>
+
+<pre><code>require 'mkmf'
+create_makefile('pwmlib')
+</code></pre>
+
+<h6>実行</h6>
+
+<pre><code>$ ruby extconf.rb
+</code></pre>
+
+<p>Makefileが生成される</p>
+
+<h3>ビルドとインストール</h3>
+
+<pre><code>$ make
+$ sudo make install ← 生成された.soファイルをRubyのライブラリディレクトリへコピー
+</code></pre>
+
+<h2>Rubyからの利用</h2>
+
+<div><script src='https://gist.github.com/4673063.js'></script>
+<noscript><pre><code>require 'pwmlib'
+
+pwm = Pwmlib
+
+pwm.set_range(1000)
+0.step(1000, 100) do |i|
+  sleep(1)
+  puts &quot;d=#{i}&quot;
+  pwm.set_duty(i)
+end
+</code></pre></noscript></div>
+
+
+<h6>実行</h6>
+
+<pre><code>$ sudo ruby pwm.rb
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[RaspberryPi - C言語でPWM制御。からの、Ruby用ライブラリ作成]]></title>
+    <link href="http://masquaremo.github.com/blog/2013/01/29/223448/"/>
+    <updated>2013-01-29T22:34:00+09:00</updated>
+    <id>http://masquaremo.github.com/blog/2013/01/29/223448</id>
+    <content type="html"><![CDATA[<p>雑誌インターフェースの<a href="http://masquaremo.github.com/blog/2013/01/27/201355/">サンプル</a>や、
+wiringPiの<a href="http://masquaremo.github.com/blog/2013/01/28/215710/">コード</a>を参考にpwmのレジスタにアクセスする。</p>
+
+<h2>RaspberryPiのPWM</h2>
+
+<ul>
+<li>PWM0(GPIO18)がピンヘッダ(12pin)へ接続されている</li>
+<li>PWM_RNGxレジスタで、Rangeを設定</li>
+<li>PWM_DATxレジスタで、Duty(Highの期間)を設定</li>
+</ul>
+
+
+<pre>
+        |<---duty-->|
+         ___________
+        /           \____________/
+        |<-------range---------->|
+</pre>
+
+
+<ul>
+<li>CM_GPxCTLレジスタ(※)で、Rangeのベースクロックを設定する。</li>
+<li>OSCに19.2MHzの発信器が接続されている。(<a href="http://www.raspberrypi.org/wp-content/uploads/2012/10/Raspberry-Pi-R2.0-Schematics-Issue2.2_027.pdf">回路図参照</a>)</li>
+<li>CM_GPxCTLレジスタのSRCフィールドを1(oscillator)にすれば、OSC(19.2MHz)が使用可。</li>
+<li>CM_GPxDIVレジスタで、OSCクロックを分周。WiringPiでは32分周して600KHzをRangeのベースクロックとしている。</li>
+</ul>
+
+
+<p>※CM_GPxCTLレジスタのアドレスが、BCM2835の<a href="http://www.petervis.com/Raspberry_PI/BCM2835_PDF_Datasheet/BCM2835_PDF_Datasheet.html">データシート</a>では、0x20101070(0x7E101070)となっているが、
+WiringPiのコード上では、0x201010A0にアクセスしている。</p>
+
+<h2>プログラム</h2>
+
+<p>Rangeを1000固定で、Dutyを0～1000まで100単位で変化させるサンプル。<br/>
+※ただし、動作はLED(暗→明)で確認しただけで、オシロスコープなどでは確認していないので
+正確なクロックが出力されているか不明。</p>
+
+<div><script src='https://gist.github.com/4672925.js'></script>
+<noscript><pre><code>//
+// BCM2835 pwm lib
+//
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;dirent.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;assert.h&gt;
+#include &lt;sys/mman.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;
+
+#include &lt;unistd.h&gt;
+
+#define BCM2708_PERI_BASE       0x20000000
+#define GPIO_BASE               (BCM2708_PERI_BASE + 0x200000) /* GPIO controller */
+#define PWM_BASE                (BCM2708_PERI_BASE + 0x20C000) /* PWM controller */
+#define CLOCK_BASE              (BCM2708_PERI_BASE + 0x101000)
+
+
+// PWM controller offset
+#define    PWM_CONTROL 0
+#define PWM_STATUS  1
+#define PWM0_RANGE  4
+#define PWM0_DATA   5
+#define PWM1_RANGE  8
+#define PWM1_DATA   9
+
+// GPIO clock reg offset
+#define PWMCLK_CNTL 40
+#define PWMCLK_DIV  41
+
+// BCM Magic
+#define BCM_PASSWORD 0x5A000000
+
+#define PWM1_MS_MODE    0x8000  // Run in MS mode
+#define PWM1_USEFIFO    0x2000  // Data from FIFO
+#define PWM1_REVPOLAR   0x1000  // Reverse polarity
+#define PWM1_OFFSTATE   0x0800  // Ouput Off state
+#define PWM1_REPEATFF   0x0400  // Repeat last value if FIFO empty
+#define PWM1_SERIAL     0x0200  // Run in serial mode
+#define PWM1_ENABLE     0x0100  // Channel Enable
+
+#define PWM0_MS_MODE    0x0080  // Run in MS mode
+#define PWM0_USEFIFO    0x0020  // Data from FIFO
+#define PWM0_REVPOLAR   0x0010  // Reverse polarity
+#define PWM0_OFFSTATE   0x0008  // Ouput Off state
+#define PWM0_REPEATFF   0x0004  // Repeat last value if FIFO empty
+#define PWM0_SERIAL     0x0002  // Run in serial mode
+#define PWM0_ENABLE     0x0001  // Channel Enable
+
+#define PAGE_SIZE (4*1024)
+#define BLOCK_SIZE (4*1024)
+
+// GPIO setup macros. Always use INP_GPIO(x) before using OUT_GPIO(x) or SET_GPIO_ALT(x,y)
+#define INP_GPIO(g) *(gpio+((g)/10)) &amp;= ~(7&lt;&lt;(((g)%10)*3))
+#define OUT_GPIO(g) *(gpio+((g)/10)) |=  (1&lt;&lt;(((g)%10)*3))
+#define SET_GPIO_ALT(g,a) *(gpio+(((g)/10))) |= (((a)&lt;=3?(a)+4:(a)==4?3:2)&lt;&lt;(((g)%10)*3))
+
+#define GPIO_SET *(gpio+7)  // sets   bits which are 1 ignores bits which are 0
+#define GPIO_CLR *(gpio+10) // clears bits which are 1 ignores bits which are 0
+#define GPIO_GET *(gpio+13) // read   bits
+
+// I/O access
+volatile unsigned *gpio;
+volatile unsigned *pwm;
+volatile unsigned *clk;
+
+static int mem_fd = 0;
+
+//
+// Set up a memory regions to access GPIO
+//
+volatile unsigned * io_mapping(int base_addr)
+{
+    char *gpio_mem, *gpio_map;
+    
+    /* open /dev/mem */
+    if (!mem_fd) {
+        if ((mem_fd = open(&quot;/dev/mem&quot;, O_RDWR|O_SYNC) ) &lt; 0) {
+            printf(&quot;can't open /dev/mem \n&quot;);
+            exit (-1);
+        }
+    }
+    
+    /* mmap GPIO */
+
+    // Allocate MAP block
+    if ((gpio_mem = malloc(BLOCK_SIZE + (PAGE_SIZE-1))) == NULL) {
+        printf(&quot;allocation error \n&quot;);
+        exit (-1);
+    }
+
+    // Make sure pointer is on 4K boundary
+    if ((unsigned long)gpio_mem % PAGE_SIZE)
+        gpio_mem += PAGE_SIZE - ((unsigned long)gpio_mem % PAGE_SIZE);
+
+    // Now map it
+    gpio_map = (char *)mmap(
+        (caddr_t)gpio_mem,
+        BLOCK_SIZE,
+        PROT_READ|PROT_WRITE,
+        MAP_SHARED|MAP_FIXED,
+        mem_fd,
+        base_addr
+    );
+
+    if ((long)gpio_map &lt; 0) {
+        printf(&quot;mmap error %d\n&quot;, (int)gpio_map);
+        exit (-1);
+    }
+
+   // Always use volatile pointer!
+   return (volatile unsigned *)gpio_map;
+
+}
+
+//
+void hw_initialize()
+{
+    gpio = io_mapping(GPIO_BASE);
+    pwm = io_mapping(PWM_BASE);
+    clk = io_mapping(CLOCK_BASE);
+    
+    // GPIO18をPWMに
+    SET_GPIO_ALT(18, 5);
+    
+    *(pwm + PWM_CONTROL) = 0; // Stop PWM
+
+    *(clk + PWMCLK_CNTL) = BCM_PASSWORD | 0x01; // Stop PWM Clock
+
+    usleep(110000); // See comments in pwmSetClockWPi
+
+    while ((*(clk + PWMCLK_CNTL) &amp; 0x80) != 0) // Wait for clock to be !BUSY
+        usleep(1000) ;
+
+    *(clk + PWMCLK_DIV)  = BCM_PASSWORD | (32 &lt;&lt; 12); // set pwm div to 32 (19.2/32 = 600KHz)
+    *(clk + PWMCLK_CNTL) = BCM_PASSWORD | 0x11; // enable clk
+
+    usleep(110000);
+
+    // Default range register of 1024
+    *(pwm + PWM0_RANGE) = 1024; 
+    usleep(10000);
+    *(pwm + PWM1_RANGE) = 1024;
+    usleep(10000);
+    *(pwm + PWM0_DATA) = 0;
+    usleep(10000);
+    *(pwm + PWM1_DATA) = 0;
+    usleep(10000);
+
+    // Enable PWMs in balanced mode (default)
+    *(pwm + PWM_CONTROL) = PWM0_ENABLE | PWM1_ENABLE;
+
+    usleep(100000);
+}
+
+// Range設定
+void set_range(int range)
+{
+    *(pwm + PWM0_RANGE) = range;
+    usleep(1000);
+}
+
+// Duty設定
+void set_duty(int duty)
+{
+    *(pwm + PWM0_DATA) = duty;
+    usleep(1000);
+}
+
+
+int main(void)
+{
+    int i;
+    
+    hw_initialize();
+    
+    set_range(1000);
+    
+    for(i = 0; i &lt;= 1000; i += 100) {
+        usleep(1000000);
+        set_duty(i);
+        printf(&quot;d=%d\n&quot;, i);
+    }
+    return 0;
+}
+</code></pre></noscript></div>
+
+
+<h6>コンパイルと実行</h6>
+
+<pre><code>$ gcc pwm.c
+$ sudo ./a.out
+</code></pre>
+
+<hr />
+
+<p>つづく&#8230;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[RaspberryPi - WiringPiライブラリのインストール]]></title>
+    <link href="http://masquaremo.github.com/blog/2013/01/28/215710/"/>
+    <updated>2013-01-28T21:57:00+09:00</updated>
+    <id>http://masquaremo.github.com/blog/2013/01/28/215710</id>
+    <content type="html"><![CDATA[<h2>WiringPiライブラリ</h2>
+
+<p>Raspberry Piの低レベル周辺回路を制御するライブラリ、
+<a href="https://projects.drogon.net/raspberry-pi/wiringpi/">WiringPi</a>をインストールする。<br/>
+C言語用ライブラリをベースに各言語のラッパーも<a href="https://github.com/WiringPi">公開</a>されている。<br/>
+(元々Arduino向けのライブラリ？をRaspberry Piに移植した？よくわからん)</p>
+
+<p>また、コマンドラインからGPIOを制御できるユーティリティも付属している。</p>
+
+<pre><code>$ git clone git://github.com/WiringPi/WiringPi.git
+$ cd WiringPi
+$ ./build
+</code></pre>
+
+<h2>ユーティリティの使い方</h2>
+
+<p>GPIOの番号指定がArduinoライクになっているらしい。<br/>
+BCMの番号指定もできる。</p>
+
+<h6>wiringPi番号での指定</h6>
+
+<pre><code>$ gpio mode 7 out  ← Pin7(GPIO4)を出力モードに
+$ gpio write 7 1   ← Pin7(GPIO4) High
+$ gpio write 7 0   ← Pin7(GPIO4) Low
+</code></pre>
+
+<h6>BCM番号での指定</h6>
+
+<pre><code>$ gpio -g mode 4 out ← GPIO4を出力モードに
+$ gpio -g write 4 1  ← GPIO4 High
+$ gpio -g write 4 0  ← GPIO4 Low
+</code></pre>
+
+<p>ピンヘッダとwiringPi番号とBCM番号の対応は<a href="https://projects.drogon.net/raspberry-pi/wiringpi/pins/">こちら</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[RaspberryPi - C言語でLチカ(レジスタ直接制御)]]></title>
@@ -22,20 +411,22 @@
 <a href="http://www.cqpub.co.jp/interface/download/contents.htm">サンプルプログラム</a>
 (おそらくオリジナルは<a href="http://elinux.org/RPi_Low-level_peripherals#GPIO_Driving_Example_.28C.29">ここ</a>)を、
 Rev2基板用にすこし修正して動作させた。(48行目～)<br/>
-それと、サンプルプログラムのGPIO4がなぜか無効になっていた(何故？)ので使えるように。</p>
+それと、サンプルプログラムのGPIO4が無効になっていた(何故？)ので使えるように。<br/>
+※下記のコードもGPIO4を10回点滅させるようにしている。</p>
 
 <p>Rev2のピンヘッダのGPIO情報は<a href="http://elinux.org/RPi_Low-level_peripherals#General_Purpose_Input.2FOutput_.28GPIO.29">こちら</a>の少し下あたり。</p>
 
-<pre><code>gcc gpio_c.c
-sudo ./a.out
+<pre><code>$ gcc gpio_c.c
+$ sudo ./a.out
 </code></pre>
 
-<h2>レジスタへのアクセス動作のしくみ</h2>
+<h2>レジスタへ直接アクセス出来るようにする手順</h2>
 
 <ol>
 <li>malloc()で、仮想メモリ空間のメモリ領域を確保</li>
+<li>確保したメモリ領域内から、4Kバウンダリのアドレスを求める</li>
 <li>/dev/mem と mmap()で、確保したメモリ領域をレジスタ領域にマッピング</li>
-<li>mmap()がレジスタのアドレスを返す</li>
+<li>mmap()からマッピングされたレジスタのアドレスが返る</li>
 <li>mmap()が返したアドレス＋オフセットで各レジスタにアクセスする</li>
 </ol>
 
@@ -247,7 +638,10 @@ int main(int argc, char **argv)
 </code></pre></noscript></div>
 
 
+<p>※ そういえば、あまり見かけないけど型修飾子のintは省略できる。</p>
 
+<pre><code>volatile unsigned *gpio;
+</code></pre>
 ]]></content>
   </entry>
   
@@ -268,7 +662,7 @@ end
 </code></pre></noscript></div>
 
 
-<pre><code>sudo ruby gpio4.rb
+<pre><code>$ sudo ruby gpio4.rb
 </code></pre>
 
 <p><img src="http://dl.dropbox.com/u/54355699/github/raspi01.JPG" alt="RubyでLチカ" /></p>
@@ -289,46 +683,46 @@ end
 
 <p>事前に</p>
 
-<pre><code>sudo apt-get update
-sudo apt-get upgrade
+<pre><code>$ sudo apt-get update
+$ sudo apt-get upgrade
 </code></pre>
 
 <p>を実施済み</p>
 
 <h2>gitのインストール</h2>
 
-<pre><code>sudo apt-get install git-core
+<pre><code>$ sudo apt-get install git-core
 </code></pre>
 
 <h2>CRubyのインストール</h2>
 
-<pre><code>sudo apt-get install ruby
+<pre><code>$ sudo apt-get install ruby
 </code></pre>
 
 <h2>mrubyのインストール・ビルド</h2>
 
-<pre><code>git clone git://github.com/mruby/mruby.git
-sudo apt-get install build-essential bison
+<pre><code>$ git clone git://github.com/mruby/mruby.git
+$ sudo apt-get install build-essential bison
 </code></pre>
 
 <p>mrubyディレクトリ下で</p>
 
-<pre><code>make
+<pre><code>$ make
 </code></pre>
 
 <p>※先にCRubyを入れていないと途中でエラーになる</p>
 
 <h2>環境変数</h2>
 
-<pre><code>export MRUBY_HOME=(makeしたディレクトリ)  
-export PATH=$PATH:$MRUBY_HOME/bin  
+<pre><code>$ export MRUBY_HOME=(makeしたディレクトリ)  
+$ export PATH=$PATH:$MRUBY_HOME/bin  
 </code></pre>
 
 <p>※.bashrcにも</p>
 
 <h2>参考サイト</h2>
 
-<p><a href="http://geekmonkey.org/articles/37-building-mruby-on-the-raspberry-pi">http://geekmonkey.org/articles/37-building-mruby-on-the-raspberry-pi</a></p>
+<p><a href="http://geekmonkey.org/articles/37-building-mruby-on-the-raspberry-pi">Building mruby on the Raspberry Pi</a></p>
 ]]></content>
   </entry>
   
@@ -423,11 +817,11 @@ rake preview  ← localhost:4000でWebサーバ起動
 
 <h2>参考サイト</h2>
 
-<p><a href="http://d.hatena.ne.jp/hackugyo/20110612/1307830385">http://d.hatena.ne.jp/hackugyo/20110612/1307830385</a>
-<a href="http://www.hisasann.com/blog/2012/10/06/first-post/">http://www.hisasann.com/blog/2012/10/06/first-post/</a>
-<a href="http://mattn.kaoriya.net/software/lang/ruby/20111017205717.htm">http://mattn.kaoriya.net/software/lang/ruby/20111017205717.htm</a>
-<a href="http://www.sankitch.me/blog/2012/05/05/build-octopress-on-github-dropbox/">http://www.sankitch.me/blog/2012/05/05/build-octopress-on-github-dropbox/</a>
-<a href="http://sesame.github.com/blog/2012/12/09/how-to-use-octopress/">http://sesame.github.com/blog/2012/12/09/how-to-use-octopress/</a></p>
+<p><a href="http://www.hisasann.com/blog/2012/10/06/first-post/">Githubを使って独自ブログをはじめる方法メモ</a><br/>
+<a href="http://mattn.kaoriya.net/software/lang/ruby/20111017205717.htm">githubとjekyllとoctopressで作る簡単でモダンなブログ</a><br/>
+<a href="http://www.sankitch.me/blog/2012/05/05/build-octopress-on-github-dropbox/">Octopress + Github Pages + Dropbox でブログを構築</a><br/>
+<a href="http://sesame.github.com/blog/2012/12/09/how-to-use-octopress/">Octopressの使い方</a><br/>
+<a href="http://d.hatena.ne.jp/hackugyo/20110612/1307830385">DevKitを使わないとgemが入らない場合(pikを使っていてもだいじょうぶ)</a></p>
 ]]></content>
   </entry>
   
