@@ -4,7 +4,7 @@
   <title><![CDATA[Category: RaspberryPi | φ(. . )めもめも]]></title>
   <link href="http://masquaremo.github.com/blog/categories/raspberrypi/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-01-30T22:00:59+09:00</updated>
+  <updated>2013-02-04T23:37:10+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
     <name><![CDATA[masquaremo]]></name>
@@ -12,6 +12,125 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[RaspberryPi - 無線LAN設定]]></title>
+    <link href="http://masquaremo.github.com/blog/2013/02/04/231557/"/>
+    <updated>2013-02-04T23:15:00+09:00</updated>
+    <id>http://masquaremo.github.com/blog/2013/02/04/231557</id>
+    <content type="html"><![CDATA[<h2>USB無線LAN子機の設定</h2>
+
+<p>RaspberryPiにUSB無線LAN子機(NEC Aterm WL300NU-G)を接続した。<br/>
+そのときの手順。</p>
+
+<h2>電源</h2>
+
+<p>RaspberryPi起動中に、WL300NU-GをUSBに差すと再起動がかかった。<br/>
+どうも、電力が一時的に不足するようだ。<br/>
+USB機器を使用する場合は、電源投入前に差しておくのが良いかもしれない。</p>
+
+<h2>起動後の関連コマンドログ</h2>
+
+<pre><code>pi@raspberrypi ~ $ dmesg
+(省略)
+[    3.143217] usb 1-1.3: new high-speed USB device number 4 using dwc_otg
+[    3.302245] usb 1-1.3: New USB device found, idVendor=0409, idProduct=0249
+[    3.321389] usb 1-1.3: New USB device strings: Mfr=16, Product=32, SerialNumber=48
+[    3.336501] usb 1-1.3: Product: AtermWL300NU-G
+[    3.343530] usb 1-1.3: Manufacturer: NEC
+[    3.349906] usb 1-1.3: SerialNumber: 12345
+[    4.155439] udevd[137]: starting version 175
+[    5.671058] cfg80211: Calling CRDA to update world regulatory domain
+[    6.493240] usb 1-1.3: reset high-speed USB device number 4 using dwc_otg
+[    6.693746] usbcore: registered new interface driver carl9170
+[    6.863646] usb 1-1.3: firmware not found.
+(省略)
+
+pi@raspberrypi ~ $ lsmod
+Module                  Size  Used by
+snd_bcm2835            12808  0
+snd_pcm                74834  1 snd_bcm2835
+snd_seq                52536  0
+snd_timer              19698  2 snd_seq,snd_pcm
+snd_seq_device          6300  1 snd_seq
+snd                    52489  5 snd_seq_device,snd_timer,snd_seq,snd_pcm,snd_bcm2835
+snd_page_alloc          4951  1 snd_pcm
+carl9170               74651  0
+mac80211              236178  1 carl9170
+ath                    16648  1 carl9170
+cfg80211              171957  3 ath,mac80211,carl9170
+
+pi@raspberrypi ~ $ lsusb
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 001 Device 002: ID 0424:9512 Standard Microsystems Corp.
+Bus 001 Device 003: ID 0424:ec00 Standard Microsystems Corp.
+Bus 001 Device 004: ID 0409:0249 NEC Corp. Aterm WL300NU-G
+
+pi@raspberrypi ~ $ modinfo carl9170 | head
+filename:       /lib/modules/3.2.27+/kernel/drivers/net/wireless/ath/carl9170/carl9170.ko
+alias:          arusb_lnx
+alias:          ar9170usb
+firmware:       carl9170-1.fw
+description:    Atheros AR9170 802.11n USB wireless
+license:        GPL
+author:         Christian Lamparter &lt;chunkeey@googlemail.com&gt;
+author:         Johannes Berg &lt;johannes@sipsolutions.net&gt;
+version:        1:1.9.4
+srcversion:     D2411637BD7256187C65770
+</code></pre>
+
+<h2>デバイスを認識させる</h2>
+
+<p>USB機器としては認識しているが、<code>ifconfig</code>で、該当するIFが表示されない。<br/>
+原因は、<code>dmesg</code> の</p>
+
+<pre><code>[    6.863646] usb 1-1.3: firmware not found.
+</code></pre>
+
+<p>これ。</p>
+
+<p>無線LANデバイスは、.koファイルだけでなく、対応するファームウェアファイルが必要となる。
+必要なファイルは、<code>mondinfo</code>で表示される、</p>
+
+<pre><code>firmware:       carl9170-1.fw   ← コイツ
+</code></pre>
+
+<p><a href="http://linuxwireless.org/en/users/Drivers/carl9170">LinuxWireless</a>から、carl9170-1.fw をダウンロード<br/>
+<code>/lib/firmware</code>におく。パーミッションは、644。</p>
+
+<h2>設定</h2>
+
+<p><code>/etc/network/interfaces</code> を編集する。</p>
+
+<h3>オリジナルとの差分</h3>
+
+<pre><code>pi@raspberrypi /etc/network $ diff interfaces interfaces.org
+6d5
+&lt; auto wlan0
+8,17c7,8
+&lt; iface wlan0 inet dhcp
+&lt; wpa-ap-scan 1
+&lt; wpa-scan-ssid 1
+&lt; wpa-key-mgmt WPA-PSK
+&lt; wpa-proto WPA2
+&lt; wpa-pariwise CCMP
+&lt; wpa-group CCMP
+&lt; wpa-ssid アクセスポイントのSSID
+&lt; wpa-psk アクセスポイントのキー
+&lt; #wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+---
+&gt; iface wlan0 inet manual
+&gt; wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+</code></pre>
+
+<p>編集後</p>
+
+<pre><code>$ sudo ifup wlan0
+</code></pre>
+
+<p>として有効化する。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[RaspberryPi - C言語でPWM制御。からの、Ruby用ライブラリ作成(つづき)]]></title>
@@ -92,6 +211,8 @@ $ sudo make install ← 生成された.soファイルをRubyのライブラリ�
 </code></pre>
 
 <h2>Rubyからの利用</h2>
+
+<p>C言語版と同様、Rangeを1000固定で、Dutyを0～1000まで100単位で変化させるサンプル。</p>
 
 <p><div><script src='https://gist.github.com/4673063.js'></script>
 <noscript><pre><code>require 'pwmlib'
@@ -412,7 +533,7 @@ $ gpio -g write 4 0  ← GPIO4 Low
 (おそらくオリジナルは<a href="http://elinux.org/RPi_Low-level_peripherals#GPIO_Driving_Example_.28C.29">ここ</a>)を、
 Rev2基板用にすこし修正して動作させた。(48行目～)<br/>
 それと、サンプルプログラムのGPIO4が無効になっていた(何故？)ので使えるように。<br/>
-※下記のコードもGPIO4を10回点滅させるようにしている。</p>
+※下記のコードもGPIO4を10回トグルさせるようにしている。</p>
 
 <p>Rev2のピンヘッダのGPIO情報は<a href="http://elinux.org/RPi_Low-level_peripherals#General_Purpose_Input.2FOutput_.28GPIO.29">こちら</a>の少し下あたり。</p>
 
@@ -642,30 +763,6 @@ int main(int argc, char **argv)
 
 <pre><code>volatile unsigned *gpio;
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[RaspberryPi - CRubyでLチカ]]></title>
-    <link href="http://masquaremo.github.com/blog/2013/01/26/raspi_gpio_ruby/"/>
-    <updated>2013-01-26T15:00:00+09:00</updated>
-    <id>http://masquaremo.github.com/blog/2013/01/26/raspi_gpio_ruby</id>
-    <content type="html"><![CDATA[<p>デバイスファイルを使用した、GPIO制御。</p>
-
-<p><div><script src='https://gist.github.com/4635396.js'></script>
-<noscript><pre><code>system('echo &quot;4&quot; &gt; /sys/class/gpio/export')
-system('echo &quot;out&quot; &gt; /sys/class/gpio/gpio4/direction')
-[0, 1].cycle do |sw|
-  system(&quot;echo #{sw} &gt; /sys/class/gpio/gpio4/value&quot;)
-  sleep(0.5)
-end
-</code></pre></noscript></div>
-</p>
-
-<pre><code>$ sudo ruby gpio4.rb
-</code></pre>
-
-<p><img src="http://dl.dropbox.com/u/54355699/github/raspi01.JPG" alt="RubyでLチカ" /></p>
 ]]></content>
   </entry>
   

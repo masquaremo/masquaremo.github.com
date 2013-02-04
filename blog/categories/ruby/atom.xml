@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | φ(. . )めもめも]]></title>
   <link href="http://masquaremo.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-01-30T22:00:59+09:00</updated>
+  <updated>2013-02-04T23:37:10+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
     <name><![CDATA[masquaremo]]></name>
@@ -92,6 +92,8 @@ $ sudo make install ← 生成された.soファイルをRubyのライブラリ�
 </code></pre>
 
 <h2>Rubyからの利用</h2>
+
+<p>C言語版と同様、Rangeを1000固定で、Dutyを0～1000まで100単位で変化させるサンプル。</p>
 
 <p><div><script src='https://gist.github.com/4673063.js'></script>
 <noscript><pre><code>require 'pwmlib'
