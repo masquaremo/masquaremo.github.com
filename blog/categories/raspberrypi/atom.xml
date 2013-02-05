@@ -4,7 +4,7 @@
   <title><![CDATA[Category: RaspberryPi | φ(. . )めもめも]]></title>
   <link href="http://masquaremo.github.com/blog/categories/raspberrypi/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-02-04T23:37:10+09:00</updated>
+  <updated>2013-02-06T07:30:13+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
     <name><![CDATA[masquaremo]]></name>
@@ -25,8 +25,8 @@
 
 <h2>電源</h2>
 
-<p>RaspberryPi起動中に、WL300NU-GをUSBに差すと再起動がかかった。<br/>
-どうも、電力が一時的に不足するようだ。<br/>
+<p>RaspberryPi起動中に、USB機器を差すと物によっては電力不足でリセットがかかり再起動するらしい。
+試しに、起動中にWL300NU-GをUSBに差してみたら、やはり再起動した。<br/>
 USB機器を使用する場合は、電源投入前に差しておくのが良いかもしれない。</p>
 
 <h2>起動後の関連コマンドログ</h2>
@@ -129,6 +129,13 @@ srcversion:     D2411637BD7256187C65770
 </code></pre>
 
 <p>として有効化する。</p>
+
+<h2>参考サイト</h2>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/pasela/20121224/raspi_wlan">Raspberry Piを無線LAN化</a></li>
+</ul>
+
 ]]></content>
   </entry>
   

@@ -10,8 +10,8 @@
 
   
   <meta name="description" content="USB無線LAN子機の設定 RaspberryPiにUSB無線LAN子機(NEC Aterm WL300NU-G)を接続した。
-そのときの手順。 電源 RaspberryPi起動中に、WL300NU-GをUSBに差すと再起動がかかった。
-どうも、電力が一時的に不足するようだ。 &hellip;">
+そのときの手順。 電源 RaspberryPi起動中に、USB機器を差すと物によっては電力不足でリセットがかかり再起動するらしい。
+試しに、起動中にWL300NU- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -39,7 +39,7 @@
   <header role="banner"><hgroup>
   <h1><a href="/">φ(. . )めもめも</a></h1>
   
-    <h2>技術関連の個人的なメモ</h2>
+    <h2>技術関連の個人的な備忘録</h2>
   
 </hgroup>
 
@@ -99,8 +99,8 @@
 
 <h2>電源</h2>
 
-<p>RaspberryPi起動中に、WL300NU-GをUSBに差すと再起動がかかった。<br/>
-どうも、電力が一時的に不足するようだ。<br/>
+<p>RaspberryPi起動中に、USB機器を差すと物によっては電力不足でリセットがかかり再起動するらしい。
+試しに、起動中にWL300NU-GをUSBに差してみたら、やはり再起動した。<br/>
 USB機器を使用する場合は、電源投入前に差しておくのが良いかもしれない。</p>
 
 <h2>起動後の関連コマンドログ</h2>
@@ -203,6 +203,13 @@ srcversion:     D2411637BD7256187C65770
 </code></pre>
 
 <p>として有効化する。</p>
+
+<h2>参考サイト</h2>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/pasela/20121224/raspi_wlan">Raspberry Piを無線LAN化</a></li>
+</ul>
+
 </div>
 
 
