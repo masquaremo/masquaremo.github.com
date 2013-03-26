@@ -4,7 +4,7 @@
   <title><![CDATA[φ(. . )めもめも]]></title>
   <link href="http://masquaremo.github.com/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-03-26T22:59:12+09:00</updated>
+  <updated>2013-03-27T00:14:40+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
     <name><![CDATA[masquaremo]]></name>
@@ -49,8 +49,7 @@ $ /opt/vc/bin/vcgencmd measure_clock arm
 
 <h2>vcgencmd使い方</h2>
 
-<pre><code>RPI vcgencmd usage[http://elinux.org/RPI_vcgencmd_usage]
-</code></pre>
+<p><a href="http://elinux.org/RPI_vcgencmd_usage">RPI vcgencmd usage</a></p>
 ]]></content>
   </entry>
   
