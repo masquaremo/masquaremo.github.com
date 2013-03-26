@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: web - φ(. . )めもめも</title>
+  <title>RaspberryPi - 小ネタ - φ(. . )めもめも</title>
   <meta name="author" content="masquaremo">
 
   
-  <meta name="description" content="Category: web">
+  <meta name="description" content="CPU温度 $ /opt/vc/bin/vcgencmd measure_temp $ cat /sys/class/thermal/thermal_zone0/temp CPU情報 $ cat /proc/cpuinfo CPUクロック $ cat /sys/devices/system/cpu &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://masquaremo.github.comblog/categories/web/">
+  <link rel="canonical" href="http://masquaremo.github.com/blog/2013/03/12/215300/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -63,35 +63,116 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Web</h1>
+    
+      <h1 class="entry-title">RaspberryPi - 小ネタ</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-12T21:53:00+09:00" pubdate data-updated="true">Mar 12<span>th</span>, 2013</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><h2>CPU温度</h2>
 
-  
-  <h2>2013</h2>
+<pre><code>$ /opt/vc/bin/vcgencmd measure_temp
 
-<article>
-  
-<h1><a href="/blog/2013/01/24/first-post/">Github+Octopressデプロイ</a></h1>
-<time datetime="2013-01-24T22:22:00+09:00" pubdate><span class='month'>Jan</span> <span class='day'>24</span> <span class='year'>2013</span></time>
+$ cat /sys/class/thermal/thermal_zone0/temp
+</code></pre>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/web/'>web</a></span>
-</footer>
+<h2>CPU情報</h2>
 
+<pre><code>$ cat /proc/cpuinfo
+</code></pre>
 
-</article>
+<h2>CPUクロック</h2>
 
+<pre><code>$ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq
+
+$ /opt/vc/bin/vcgencmd measure_clock arm
+</code></pre>
+
+<h2>メモリー情報</h2>
+
+<pre><code>$ cat /proc/meminfo
+</code></pre>
+
+<h2>電圧</h2>
+
+<pre><code>/opt/vc/bin/vcgencmd measure_volts core
+</code></pre>
+
+<h2>vcgencmd使い方</h2>
+
+<pre><code>RPI vcgencmd usage[http://elinux.org/RPI_vcgencmd_usage]
+</code></pre>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">masquaremo</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-12T21:53:00+09:00" pubdate data-updated="true">Mar 12<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/raspberrypi/'>RaspberryPi</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://masquaremo.github.com/blog/2013/03/12/215300/" data-via="" data-counturl="http://masquaremo.github.com/blog/2013/03/12/215300/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/02/04/231557/" title="Previous Post: RaspberryPi - 無線LAN設定">&laquo; RaspberryPi - 無線LAN設定</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>

@@ -4,7 +4,7 @@
   <title><![CDATA[φ(. . )めもめも]]></title>
   <link href="http://masquaremo.github.com/atom.xml" rel="self"/>
   <link href="http://masquaremo.github.com/"/>
-  <updated>2013-02-06T07:30:13+09:00</updated>
+  <updated>2013-03-26T22:59:12+09:00</updated>
   <id>http://masquaremo.github.com/</id>
   <author>
     <name><![CDATA[masquaremo]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[RaspberryPi - 小ネタ]]></title>
+    <link href="http://masquaremo.github.com/blog/2013/03/12/215300/"/>
+    <updated>2013-03-12T21:53:00+09:00</updated>
+    <id>http://masquaremo.github.com/blog/2013/03/12/215300</id>
+    <content type="html"><![CDATA[<h2>CPU温度</h2>
+
+<pre><code>$ /opt/vc/bin/vcgencmd measure_temp
+
+$ cat /sys/class/thermal/thermal_zone0/temp
+</code></pre>
+
+<h2>CPU情報</h2>
+
+<pre><code>$ cat /proc/cpuinfo
+</code></pre>
+
+<h2>CPUクロック</h2>
+
+<pre><code>$ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq
+
+$ /opt/vc/bin/vcgencmd measure_clock arm
+</code></pre>
+
+<h2>メモリー情報</h2>
+
+<pre><code>$ cat /proc/meminfo
+</code></pre>
+
+<h2>電圧</h2>
+
+<pre><code>/opt/vc/bin/vcgencmd measure_volts core
+</code></pre>
+
+<h2>vcgencmd使い方</h2>
+
+<pre><code>RPI vcgencmd usage[http://elinux.org/RPI_vcgencmd_usage]
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[RaspberryPi - 無線LAN設定]]></title>
@@ -25,7 +66,7 @@
 
 <h2>電源</h2>
 
-<p>RaspberryPi起動中に、USB機器を差すと物によっては電力不足でリセットがかかり再起動するらしい。
+<p>RaspberryPi起動中に、USB機器を差すと物によっては電力不足でリセットがかかり再起動するらしい。<br/>
 試しに、起動中にWL300NU-GをUSBに差してみたら、やはり再起動した。<br/>
 USB機器を使用する場合は、電源投入前に差しておくのが良いかもしれない。</p>
 
@@ -90,7 +131,7 @@ srcversion:     D2411637BD7256187C65770
 <p>これ。</p>
 
 <p>無線LANデバイスは、.koファイルだけでなく、対応するファームウェアファイルが必要となる。
-必要なファイルは、<code>mondinfo</code>で表示される、</p>
+必要なファイルは、<code>dmesg</code>で表示される、</p>
 
 <pre><code>firmware:       carl9170-1.fw   ← コイツ
 </code></pre>

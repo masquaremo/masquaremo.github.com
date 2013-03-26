@@ -9,9 +9,7 @@
   <meta name="author" content="masquaremo">
 
   
-  <meta name="description" content="USB無線LAN子機の設定 RaspberryPiにUSB無線LAN子機(NEC Aterm WL300NU-G)を接続した。
-そのときの手順。 電源 RaspberryPi起動中に、USB機器を差すと物によっては電力不足でリセットがかかり再起動するらしい。
-試しに、起動中にWL300NU- &hellip;">
+  <meta name="description" content="CPU温度 $ /opt/vc/bin/vcgencmd measure_temp $ cat /sys/class/thermal/thermal_zone0/temp CPU情報 $ cat /proc/cpuinfo CPUクロック $ cat /sys/devices/system/cpu &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +70,74 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/03/12/215300/">RaspberryPi - 小ネタ</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-12T21:53:00+09:00" pubdate data-updated="true">Mar 12<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>CPU温度</h2>
+
+<pre><code>$ /opt/vc/bin/vcgencmd measure_temp
+
+$ cat /sys/class/thermal/thermal_zone0/temp
+</code></pre>
+
+<h2>CPU情報</h2>
+
+<pre><code>$ cat /proc/cpuinfo
+</code></pre>
+
+<h2>CPUクロック</h2>
+
+<pre><code>$ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq
+
+$ /opt/vc/bin/vcgencmd measure_clock arm
+</code></pre>
+
+<h2>メモリー情報</h2>
+
+<pre><code>$ cat /proc/meminfo
+</code></pre>
+
+<h2>電圧</h2>
+
+<pre><code>/opt/vc/bin/vcgencmd measure_volts core
+</code></pre>
+
+<h2>vcgencmd使い方</h2>
+
+<pre><code>RPI vcgencmd usage[http://elinux.org/RPI_vcgencmd_usage]
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/02/04/231557/">RaspberryPi - 無線LAN設定</a></h1>
     
     
@@ -102,7 +168,7 @@
 
 <h2>電源</h2>
 
-<p>RaspberryPi起動中に、USB機器を差すと物によっては電力不足でリセットがかかり再起動するらしい。
+<p>RaspberryPi起動中に、USB機器を差すと物によっては電力不足でリセットがかかり再起動するらしい。<br/>
 試しに、起動中にWL300NU-GをUSBに差してみたら、やはり再起動した。<br/>
 USB機器を使用する場合は、電源投入前に差しておくのが良いかもしれない。</p>
 
@@ -167,7 +233,7 @@ srcversion:     D2411637BD7256187C65770
 <p>これ。</p>
 
 <p>無線LANデバイスは、.koファイルだけでなく、対応するファームウェアファイルが必要となる。
-必要なファイルは、<code>mondinfo</code>で表示される、</p>
+必要なファイルは、<code>dmesg</code>で表示される、</p>
 
 <pre><code>firmware:       carl9170-1.fw   ← コイツ
 </code></pre>
@@ -1236,6 +1302,10 @@ rake preview  ← localhost:4000でWebサーバ起動
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/12/215300/">RaspberryPi - 小ネタ</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/04/231557/">RaspberryPi - 無線LAN設定</a>
       </li>
     
@@ -1249,10 +1319,6 @@ rake preview  ← localhost:4000でWebサーバ起動
     
       <li class="post">
         <a href="/blog/2013/01/28/215710/">RaspberryPi - WiringPiライブラリのインストール</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/27/201355/">RaspberryPi - C言語でLチカ(レジスタ直接制御)</a>
       </li>
     
   </ul>
